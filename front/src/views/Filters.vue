@@ -4,8 +4,8 @@
       <div id="sub-categories">
         <p>Sub categories</p>
         <ul>
-          <li v-for="(subCategorie, index) in subCategories" :key="index" @click="selectSubCat" >
-            {{ subCategorie }} #{{ index }}
+          <li v-for="(subCategory, index) in subCategories" :key="index" @click="selectSubCat" >
+            {{ subCategory }} #{{ index }}
           </li>
         </ul>
       </div>
@@ -31,7 +31,7 @@
     </div>
     <div id="show-filter">
       <p>Showing filters</p>
-      <div id="show-sub-categories">Sub categorie filter is {{ subCat }} </div>
+      <div id="show-sub-categories">Sub category filter is {{ subCat }} </div>
       <div id="show-price">Price filter is {{ price }} </div>
       <div id="show-label">Label filter is {{ label }}  </div>
       <div id="show-brand">Brand filter is {{ brand }} </div>
@@ -61,7 +61,14 @@ export default {
   },
   methods:{
     selectSubCat(event) {
-      this.subCat = event.target.innerText;
+      if (this.subCat == event.target.innerText) {
+        this.subCat = "";
+        event.target.style.backgroundColor = "";
+      } else {
+        this.subCat = event.target.innerText;
+        event.target.style.backgroundColor = "lightgreen";
+      }
+      console.log(event.target);
     },
     selectLabel(event) {
       this.label = event.target.innerText;
